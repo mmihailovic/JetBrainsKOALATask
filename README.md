@@ -14,7 +14,7 @@ Additionally, for each breakpoint type, the plugin displays specific details:
 The plugin also reacts to breakpoints changes, such as when a breakpoint is enabled or disabled, and updates the corresponding icon accordingly.
 
 The plugin has a separate frontend module that handles the user interface and communicates with the frontend using JCEF.
-Therefore, before running the plugin, it is necessary to start the frontend server by running **npm start** from the frontend module directory.
+Therefore, before running the plugin, it is necessary to start the frontend server by running **npm install** and **npm start** from the frontend module directory.
 
 ### Visual presentation
 ![tool window](https://github.com/user-attachments/assets/ebf32a6b-8e88-4a55-a269-42768608e041)
