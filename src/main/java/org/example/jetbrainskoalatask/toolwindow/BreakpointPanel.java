@@ -24,7 +24,9 @@ public class BreakpointPanel extends JPanel {
     public BreakpointPanel(Project project) {
         this.browser = new JBCefBrowser("http://localhost:3000/");
         this.objectMapper = new ObjectMapper();
-        this.breakpointService = new BreakpointServiceImpl(XDebuggerManager.getInstance(project).getBreakpointManager(), new JCefServiceImpl(browser, objectMapper), new BreakpointMapper());
+        this.breakpointService = new BreakpointServiceImpl(XDebuggerManager.getInstance(project).getBreakpointManager(),
+                new JCefServiceImpl(browser, objectMapper), new BreakpointMapper());
+
         BreakpointsCefLoadHandler breakpointsCefLoadHandler = new BreakpointsCefLoadHandler(breakpointService);
         browser.getJBCefClient().addLoadHandler(breakpointsCefLoadHandler, browser.getCefBrowser());
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -35,6 +37,7 @@ public class BreakpointPanel extends JPanel {
     private void addBreakpointListener(Project project) {
         XBreakpointManager breakpointManager = XDebuggerManager.getInstance(project).getBreakpointManager();
 
+        // add breakpoint listener for each breakpoint type
         for(XBreakpointType type: XBreakpointType.EXTENSION_POINT_NAME.getExtensions()) {
             breakpointManager.addBreakpointListener(type, new BreakpointListener(breakpointService::addBreakpointToWindow, breakpointService::removeBreakpointFromWindow, breakpointService::updateBreakpoint));
         }
